@@ -30,8 +30,13 @@ public class Indexing {
         char[] chars = reverse2.toCharArray();
         for (int i = chars.length - 1; i >= 0; i--) {
             System.out.print(chars[i]);
-
+            System.out.println("-");
         }
+
+        // Reverse partial
+        int[] partial = {3, 6, 9, 10, 15};
+        reversePartial(partial, 2, 4);
+        System.out.println(Arrays.toString(partial));
     }
 
     public static void reverse(int[] arr) {
@@ -59,5 +64,19 @@ public class Indexing {
             right--;
         }
         return new String(chars);
+    }
+
+    public static void reversePartial(int[] arr, int i, int j) {
+        if (i < 0 || j >= arr.length || i >= j) {
+            throw new IllegalArgumentException("Invalid index");
+        }
+
+        while(i < j) {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
+        }
     }
 }
