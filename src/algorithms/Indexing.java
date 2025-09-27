@@ -37,6 +37,9 @@ public class Indexing {
         int[] partial = {3, 6, 9, 10, 15};
         reversePartial(partial, 2, 4);
         System.out.println(Arrays.toString(partial));
+
+        // Reverse words
+        System.out.println(reverseWords("the sky is blue"));
     }
 
     public static void reverse(int[] arr) {
@@ -75,6 +78,32 @@ public class Indexing {
             int temp = arr[i];
             arr[i] = arr[j];
             arr[j] = temp;
+            i++;
+            j--;
+        }
+    }
+
+    public static String reverseWords(String s) {
+        s = s.trim().replaceAll("\\s+", " ");
+        char[] chars = s.toCharArray();
+
+        reverseChar(chars, 0, chars.length - 1);
+
+        int start = 0;
+        for (int end = 0; end <= chars.length; end++) {
+            if (end == chars.length || chars[end] == ' ') {
+                reverseChar(chars, start, end - 1);
+                start = end + 1;
+            }
+        }
+        return Arrays.toString(chars);
+    }
+
+    public static void reverseChar (char[] chars, int i, int j) {
+        while(i < j) {
+            char temp = chars[i];
+            chars[i] = chars[j];
+            chars[j] = temp;
             i++;
             j--;
         }
