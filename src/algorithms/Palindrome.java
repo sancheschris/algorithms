@@ -28,13 +28,15 @@ public class Palindrome {
         int left = 0;
         int right = reversed.length - 1;
 
-        while (left < right) {
-            char temp = reversed[left];
-            reversed[left] = reversed[right];
-            reversed[right] = temp;
-            left++;
-            right--;
-        }
+        reverse(reversed, left, right);
+
+//        while (left < right) {
+//            char temp = reversed[left];
+//            reversed[left] = reversed[right];
+//            reversed[right] = temp;
+//            left++;
+//            right--;
+//        }
 
        for (int i = 0; i < original.length; i++) {
            if (reversed[i] != original[i]) {
@@ -65,6 +67,16 @@ public class Palindrome {
             right--;
         }
         return true;
+    }
+
+    public static void reverse(char[] chars, int left, int right) {
+        while (left < right) {
+            char temp = chars[left];
+            chars[left] = chars[right];
+            chars[right] = temp;
+            left++;
+            right--;
+        }
     }
 
 }
