@@ -5,6 +5,8 @@ public class SlidingWindow {
         System.out.println(maxProfit(new int[]{7, 1, 5, 3, 6, 4}));
 
         System.out.println(maxProfitBrutalForce(new int[]{7, 6, 4, 3, 1}));
+
+        System.out.println(maxProfitImproved(new int[]{7, 1, 5, 3, 6, 4}));
     }
 
     public static int maxProfit(int[] prices) {
@@ -36,5 +38,22 @@ public class SlidingWindow {
             }
         }
         return maxProfit;
+    }
+
+    public static int maxProfitImproved(int[] prices) {
+        int buyPrice = prices[0];
+        int maxProfit = 0;
+
+        for (int price : prices) {
+            if (price < buyPrice) {
+                buyPrice = price;
+            } else {
+                int profit = price - buyPrice;
+                maxProfit = profit > maxProfit ? profit : maxProfit;
+            }
+        }
+        return maxProfit;
+
+
     }
 }
