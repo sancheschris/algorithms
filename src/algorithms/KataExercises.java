@@ -7,6 +7,8 @@ public class KataExercises {
         System.out.println(Arrays.toString(countBy(5, 5)));
 
         System.out.println(solution(10));
+
+        System.out.println(reverseString("world"));
     }
 
     //Create a function with two arguments that will return an array of the first n multiples of x.
@@ -61,6 +63,20 @@ public class KataExercises {
             }
         }
         return sum;
+    }
+
+    //    Complete the solution so that it reverses the string passed into it.
+    //
+    //'world'  =>  'dlrow'
+    //'word'   =>  'drow'
+    public static String reverseString(String s) {
+
+        char[] chars = s.toCharArray();
+
+        for (int i = chars.length - 1; i >= 0; i--) {
+            System.out.print(chars[i]);
+        }
+        return "";
     }
 }
 
