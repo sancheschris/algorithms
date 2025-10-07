@@ -1,6 +1,8 @@
 package algorithms;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class KataExercises {
     public static void main(String[] args) {
@@ -9,6 +11,8 @@ public class KataExercises {
         System.out.println(solution(10));
 
         System.out.println(reverseString("world"));
+
+        System.out.println(gradingStudents(List.of(73, 67, 38, 33)));
     }
 
     //Create a function with two arguments that will return an array of the first n multiples of x.
@@ -77,6 +81,26 @@ public class KataExercises {
             System.out.print(chars[i]);
         }
         return "";
+    }
+
+    public static List<Integer> gradingStudents(List<Integer> grades) {
+        List<Integer> result = new ArrayList<>();
+
+        for (Integer grade : grades) {
+            if (grade < 38) {
+                result.add(grade);
+            } else {
+                int nextMultiple = ((grade / 5) + 1) * 5;
+
+                if (nextMultiple - grade < 3) {
+                    result.add(nextMultiple);
+                } else {
+                    result.add(grade);
+                }
+            }
+        }
+
+        return result;
     }
 }
 
