@@ -7,6 +7,8 @@ public class Hackerrank {
     public static void main(String[] args) {
 
         System.out.println(countResponseTimeRegressions(List.of(100, 200, 100, 200, 100)));
+
+        System.out.println(findSmallestMissingPositive(List.of(3, 4, -1, 1)));
     }
 
 
@@ -42,5 +44,33 @@ public class Hackerrank {
         return count;
     }
 
+    public static int findSmallestMissingPositive(List<Integer> orderNumbers) {
+        int n = orderNumbers.size();
+        int i = 0;
 
+        // Place each number in its correct position: num i → index (num - 1)
+        while (i < n) {
+            int num = orderNumbers.get(i);
+            int correctPos = num - 1;
+
+            if (num > 0 && num <= n && !orderNumbers.get(correctPos).equals(num)) {
+                // Swap orderNumbers[i] ↔ orderNumbers[correctPos]
+                int temp = orderNumbers.get(correctPos);
+                orderNumbers.set(correctPos, num);
+                orderNumbers.set(i, temp);
+            } else {
+                i++;
+            }
+        }
+
+        // After sorting, the first index i where value != i+1 is the missing number
+        for (i = 0; i < n; i++) {
+            if (orderNumbers.get(i) != i + 1) {
+                return i + 1;
+            }
+        }
+
+        // If all numbers are in place
+        return n + 1;
+    }
 }
