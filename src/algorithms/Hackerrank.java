@@ -9,6 +9,7 @@ public class Hackerrank {
         System.out.println(countResponseTimeRegressions(List.of(100, 200, 100, 200, 100)));
 
         System.out.println(findSmallestMissingPositive(List.of(3, 4, -1, 1)));
+        System.out.println(findSmallestMissingPositive(List.of(5, 4, -2, 1, -1)));
     }
 
 
