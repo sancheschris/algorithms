@@ -1,5 +1,7 @@
 package algorithms;
 
+import java.util.Locale;
+
 public class Palindrome {
     public static void main(String[] args) {
         System.out.println(isPalindromeBruteForce("Was it a car or a cat I saw?"));
@@ -7,6 +9,9 @@ public class Palindrome {
 
 
         System.out.println(isPalindrome("A man, a plan, a canal: Panama"));
+
+
+        System.out.println(isAlphabeticPalindrome("tab a cat"));
     }
 
     public static boolean isPalindromeBruteForce(String s) {
@@ -63,6 +68,22 @@ public class Palindrome {
                 return false;
             }
 
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    public static boolean isAlphabeticPalindrome(String code) {
+        String onlyLetters = code.replaceAll("[^A-Za-z]", "").toLowerCase();
+
+        int left = 0;
+        int right = onlyLetters.length() - 1;
+
+        while (left < right) {
+            if (onlyLetters.charAt(left) != onlyLetters.charAt(right)) {
+                return false;
+            }
             left++;
             right--;
         }
