@@ -74,4 +74,44 @@ public class Hackerrank {
         // If all numbers are in place
         return n + 1;
     }
+
+    public static boolean isNonTrivialRotation(String s1, String s2) {
+        // Write your code here
+        if (s1.length() != s2.length()) {
+            return false;
+        }
+
+        if (s1.equals(s2)) {
+            return false;
+        }
+
+        // s2 = s1;
+
+
+        char[] nonIdentical = s2.toLowerCase().toCharArray();
+        int k = s1.length() - 1;
+        k = k % nonIdentical.length;
+
+        swap(nonIdentical, 0, k - 1);
+        swap(nonIdentical, k, nonIdentical.length - 1);
+        swap(nonIdentical, 0, nonIdentical.length - 1);
+
+        for (int i = 0; i < nonIdentical.length; i ++) {
+            if (nonIdentical[i] != s1.toLowerCase().charAt(i)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static void swap(char[] words, int left, int right) {
+        while (left < right) {
+            char temp = words[left];
+            words[left] = words[right];
+            words[right] = temp;
+            left++;
+            right--;
+        }
+    }
 }
