@@ -10,6 +10,8 @@ public class Hackerrank {
 
         System.out.println(findSmallestMissingPositive(List.of(3, 4, -1, 1)));
         System.out.println(findSmallestMissingPositive(List.of(5, 4, -2, 1, -1)));
+
+        System.out.println(isNonTrivialRotation("abcde", "cdeab"));
     }
 
 
@@ -84,8 +86,6 @@ public class Hackerrank {
         if (s1.equals(s2)) {
             return false;
         }
-
-        // s2 = s1;
 
 
         char[] nonIdentical = s2.toLowerCase().toCharArray();
