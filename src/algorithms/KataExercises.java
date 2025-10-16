@@ -2,7 +2,9 @@ package algorithms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class KataExercises {
     public static void main(String[] args) {
@@ -13,6 +15,8 @@ public class KataExercises {
         System.out.println(reverseString("world"));
 
         System.out.println(gradingStudents(List.of(73, 67, 38, 33)));
+
+        System.out.println(Arrays.toString(topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2)));
     }
 
     //Create a function with two arguments that will return an array of the first n multiples of x.
@@ -101,6 +105,36 @@ public class KataExercises {
         }
 
         return result;
+    }
+
+    public static int[] topKFrequent(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for(int i : nums){
+            map.put(i, map.getOrDefault(i, 0) + 1);
+        }
+
+        List<Integer> bucket[] = new ArrayList[nums.length + 1];
+
+        for(int key : map.keySet()){
+            int freq = map.get(key);
+            if(bucket[freq] == null){
+                bucket[freq] = new ArrayList<>();
+            }
+            bucket[freq].add(key);
+        }
+
+        int res[] = new int[k];
+        int index = 0;
+        for(int i = bucket.length - 1; i >= 0; i--){
+            if(bucket[i] != null){
+                for(int val : bucket[i]){
+                    res[index++] = val;
+                    if(index == k) return res;
+                }
+            }
+        }
+        return res;
     }
 }
 
