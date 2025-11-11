@@ -4,14 +4,18 @@ import java.util.Locale;
 
 public class Palindrome {
     public static void main(String[] args) {
-        System.out.println(isPalindromeBruteForce("Was it a car or a cat I saw?"));
-        System.out.println(isPalindromeBruteForce("tab a cat"));
+//        System.out.println(isPalindromeBruteForce("Was it a car or a cat I saw?"));
+//        System.out.println(isPalindromeBruteForce("tab a cat"));
+//
+//
+//        System.out.println(isPalindrome("A man, a plan, a canal: Panama"));
+//
+//
+//        System.out.println(isAlphabeticPalindrome("tab a cat"));
 
-
-        System.out.println(isPalindrome("A man, a plan, a canal: Panama"));
-
-
-        System.out.println(isAlphabeticPalindrome("tab a cat"));
+        System.out.println(isPalindromeNew("amanaplanacanalpanama"));
+        System.out.println(isPalindromeNew("tab a cat"));
+        System.out.println(isPalindromeNew("A man, a plan, a canal: Panama"));
     }
 
     public static boolean isPalindromeBruteForce(String s) {
@@ -100,5 +104,37 @@ public class Palindrome {
         }
     }
 
+    public static boolean isPalindromeNew(String s) {
+        int left = 0;
+        int right = s.length() - 1;
+
+        while (left < right) {
+
+            char leftSide = Character.toLowerCase(s.charAt(left));
+            char rightSide = Character.toLowerCase(s.charAt(right));
+
+            if (isNonASCII(leftSide)) {
+                left++;
+                continue;
+            }
+
+            if (isNonASCII(rightSide)) {
+                right--;
+                continue;
+            }
+
+            if (leftSide != rightSide) {
+                return false;
+            }
+
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    public static boolean isNonASCII(char ch) {
+        return ch > 127 || !Character.isLetterOrDigit(ch);
+    }
 }
 
